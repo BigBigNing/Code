@@ -1,26 +1,26 @@
-package ${modelInfo.basePackage}.model.${modelInfo.sign};
+package ${modelGenerateInfo.basePackage}.model.${modelGenerateInfo.sign};
 
 import java.util.Date;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 /**
- * ${modelInfo.tableComment}
- * 表：  ${modelInfo.table}
- * @author  ${modelInfo.author}
- * @date ${modelInfo.date}
+ * ${modelGenerateInfo.tableComment}
+ * 表：  ${modelGenerateInfo.tableName}
+ * @author  ${modelGenerateInfo.author}
+ * @date ${modelGenerateInfo.date}
  */
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("${modelInfo.tableComment}")
-public class ${modelInfo.modelNameUpperCamel} {
+@ApiModel("${modelGenerateInfo.tableComment}")
+public class ${modelGenerateInfo.modelNameUpperCamel} {
 
-    <#list modelInfo.columnList as column>
+    <#list modelGenerateInfo.columnList as column>
     @ApiModelProperty(value = "${column.columnComment}")
-    private ${column.columnJavaType} ${column.columnName};
+    private ${column.columnJavaTypeName} ${column.columnName};
     </#list>
 
     @Override
@@ -29,7 +29,7 @@ public class ${modelInfo.modelNameUpperCamel} {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        <#list modelInfo.columnList as column>
+        <#list modelGenerateInfo.columnList as column>
         sb.append(", ${column.columnName}=").append(${column.columnName});
         </#list>
         sb.append("]");

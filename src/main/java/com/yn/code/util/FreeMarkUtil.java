@@ -9,7 +9,7 @@ import java.io.Writer;
 import java.util.Map;
 
 public class FreeMarkUtil {
-    public void generateFile(Map<String, Object> root, String templateName, String fileDir, String fileName) throws Exception {
+    public static void generateFile(Map<String, Object> root, String templateName, String fileDir, String fileName) throws Exception {
         Configuration conf = new Configuration();
         conf.setDirectoryForTemplateLoading(new File(fileDir));
         Template template = conf.getTemplate(templateName);
