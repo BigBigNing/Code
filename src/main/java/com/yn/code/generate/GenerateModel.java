@@ -14,7 +14,7 @@ import java.util.*;
 
 public class GenerateModel extends BaseConfig {
 
-    private static void generate(TableInfo tableInfo) {
+    public static void generate(TableInfo tableInfo) {
         ModelGenerateInfo modelGenerateInfo = new ModelGenerateInfo();
         modelGenerateInfo.setAuthor("yn");
         modelGenerateInfo.setBasePackage("a");
@@ -32,12 +32,11 @@ public class GenerateModel extends BaseConfig {
             modelGenerateColumnInfos.add(modelGenerateColumnInfo);
         }
         modelGenerateInfo.setColumnList(modelGenerateColumnInfos);
-
         Map<String, Object> root = new HashMap<>();
         root.put("modelGenerateInfo",modelGenerateInfo);
         String fileName = CommonUtil.getNameUpperCamel(tableInfo.getTableName()) + ".java";
         try {
-            FreeMarkUtil.generateFile(root,"model.ftl","E:",fileName);
+            FreeMarkUtil.generateFile(root,"model.ftl","src/main/java/com/yn/code/modelgenerated/",fileName);
         } catch (Exception e) {
             e.printStackTrace();
         }

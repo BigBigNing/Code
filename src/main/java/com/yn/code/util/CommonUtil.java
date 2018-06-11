@@ -31,7 +31,7 @@ public class CommonUtil {
      * @param str 需要转换的字符串
      * @return 转换后的字符串
      */
-    public static String toLowerCaseFirstOne(String str) {
+    private static String toLowerCaseFirstOne(String str) {
         if (Character.isLowerCase(str.charAt(0))) {
             return str;
         } else {
@@ -46,7 +46,7 @@ public class CommonUtil {
      * @param str 需要转换的字符串
      * @return 转换后的字符串
      */
-    public static String toUpperCaseFirstOne(String str) {
+    private static String toUpperCaseFirstOne(String str) {
         if (Character.isUpperCase(str.charAt(0))) {
             return str;
         } else {
@@ -61,7 +61,7 @@ public class CommonUtil {
      * @param str 下划线命名格式
      * @return 驼峰命名格式
      */
-    public static String underScoreCaseToCamelCase(String str) {
+    private static String underScoreCaseToCamelCase(String str) {
         if (!str.contains("_")) {
             return str;
         }
@@ -92,4 +92,6 @@ public class CommonUtil {
     public static boolean isNullOrEmpty(Object obj) {
         return obj == null || "".equals(obj.toString());
     }
+
+    public
 }
