@@ -4,6 +4,7 @@ public class ModelGenerateColumnInfo {
     private String columnComment;
     private String columnJavaTypeName;
     private String columnName;
+    private String columnCamelName;
 
     public String getColumnComment() {
         return columnComment;
@@ -27,5 +28,13 @@ public class ModelGenerateColumnInfo {
 
     public void setColumnName(String columnName) {
         this.columnName = columnName;
+    }
+
+    public String getColumnCamelName() {
+        return columnCamelName;
+    }
+
+    public void setColumnCamelName(String columnCamelName) {
+        this.columnCamelName = columnCamelName;
     }
 }

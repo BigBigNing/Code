@@ -24,19 +24,24 @@ public class GenerateModel extends BaseConfig {
         modelGenerateInfo.setTableComment(tableInfo.getTableComment());
         modelGenerateInfo.setTableName(tableInfo.getTableName());
         List<ModelGenerateColumnInfo> modelGenerateColumnInfos = new ArrayList<>();
+        List<String> importList = new ArrayList<>();
         for (TableColumn tableColumn : tableInfo.getTableColumns()) {
             ModelGenerateColumnInfo modelGenerateColumnInfo = new ModelGenerateColumnInfo();
             modelGenerateColumnInfo.setColumnComment(tableColumn.getColumnComment());
             modelGenerateColumnInfo.setColumnJavaTypeName(DataTypeEnum.getJavaTypeNameByDataType(tableColumn.getDataType()));
-            modelGenerateColumnInfo.setColumnName(tableColumn.getColumnName());
+            modelGenerateColumnInfo.setColumnName(CommonUtil.getNameLowerCamel(tableColumn.getColumnName()));
             modelGenerateColumnInfos.add(modelGenerateColumnInfo);
+            if(CommonUtil.isNeedImport(modelGenerateColumnInfo.getColumnJavaTypeName())){
+                importList.add(DataTypeEnum.getJavaTypeByDataType(tableColumn.getDataType()));
+            }
         }
         modelGenerateInfo.setColumnList(modelGenerateColumnInfos);
+        modelGenerateInfo.setImportList(importList);
         Map<String, Object> root = new HashMap<>();
         root.put("modelGenerateInfo",modelGenerateInfo);
         String fileName = CommonUtil.getNameUpperCamel(tableInfo.getTableName()) + ".java";
         try {
-            FreeMarkUtil.generateFile(root,"model.ftl","src/main/java/com/yn/code/modelgenerated/",fileName);
+            FreeMarkUtil.generateFile(root,"model.ftl",System.getProperty("user.dir")+"/src/main/java/com/yn/code/modelgenerated/",fileName);
         } catch (Exception e) {
             e.printStackTrace();
         }

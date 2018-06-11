@@ -1,5 +1,8 @@
 package com.yn.code.util;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class CommonUtil {
 
     /**
@@ -89,9 +92,12 @@ public class CommonUtil {
      * @param obj 要判断的对象
      * @return 是否为有效值(不为null 和 ""字符串)
      */
-    public static boolean isNullOrEmpty(Object obj) {
+    static boolean isNullOrEmpty(Object obj) {
         return obj == null || "".equals(obj.toString());
     }
 
-    public
+    private static final List importList = Arrays.asList("BigDecimal","Date");
+    public static boolean isNeedImport(String type){
+        return importList.contains(type);
+    }
 }

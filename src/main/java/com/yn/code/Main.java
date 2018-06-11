@@ -5,6 +5,8 @@ import com.yn.code.model.TableInfo;
 import com.yn.code.util.DataTypeEnum;
 import com.yn.code.util.TableUtil;
 
+import java.math.BigDecimal;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -17,5 +19,6 @@ public class Main {
 //        allDatabase.forEach(System.out::println);
         TableInfo tableInfo = tableUtil.getTableInfo("t_account");
         GenerateModel.generate(tableInfo);
+
     }
 }

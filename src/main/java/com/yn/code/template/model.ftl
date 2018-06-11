@@ -3,6 +3,10 @@ package ${modelGenerateInfo.basePackage}.model.${modelGenerateInfo.sign};
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
+<#list modelGenerateInfo.importList as import>
+import ${import};
+</#list>
+
 /**
  * ${modelGenerateInfo.tableComment}
  * 表：  ${modelGenerateInfo.tableName}

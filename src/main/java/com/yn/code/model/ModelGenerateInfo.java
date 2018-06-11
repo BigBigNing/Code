@@ -11,7 +11,7 @@ public class ModelGenerateInfo {
     private String date;
     private String modelNameUpperCamel;
     private List<ModelGenerateColumnInfo> columnList;
-//    private List<String> importList;
+    private List<String> importList;
 
 
     public String getBasePackage() {
@@ -76,5 +76,13 @@ public class ModelGenerateInfo {
 
     public void setColumnList(List<ModelGenerateColumnInfo> columnList) {
         this.columnList = columnList;
+    }
+
+    public List<String> getImportList() {
+        return importList;
+    }
+
+    public void setImportList(List<String> importList) {
+        this.importList = importList;
     }
 }

@@ -15,7 +15,11 @@ public class FreeMarkUtil {
         Configuration conf = new Configuration();
         conf.setDirectoryForTemplateLoading(new File(TEMPLATE_PATH));
         Template template = conf.getTemplate(templateName);
-        Writer out = new FileWriter(new File(fileDir + fileName));
+        File file = new File(fileDir + fileName);
+        if (!file.getParentFile().exists()){
+            file.getParentFile().mkdirs();
+        }
+        Writer out = new FileWriter(file);
         template.process(root, out);
         out.flush();
         out.close();
