@@ -1,11 +1,7 @@
 package com.yn.code;
 
-import com.yn.code.generate.GenerateModel;
-import com.yn.code.model.TableInfo;
-import com.yn.code.util.DataTypeEnum;
-import com.yn.code.util.TableUtil;
-
-import java.math.BigDecimal;
+import com.yn.code.generate.CodeGenerate;
+import com.yn.code.model.ConfigModel;
 
 
 public class Main {
@@ -14,11 +10,19 @@ public class Main {
         String user = "root";
         String pwd = "123456";
         String database = "test";
-        TableUtil tableUtil = new TableUtil(host,database,user,pwd);
-//        List<String> allDatabase = tableUtil.getAllDatabase();
-//        allDatabase.forEach(System.out::println);
-        TableInfo tableInfo = tableUtil.getTableInfo("t_account");
-        GenerateModel.generate(tableInfo);
+        String tableName = "seller_product";
+        ConfigModel configModel = ConfigModel.builder()
+                .jdbcHost(host)
+                .jdbcDatabase(database)
+                .jdbcUserName(user)
+                .jdbcPassword(pwd)
+                .tableName(tableName)
+                .author("yn")
+                .modelPath(System.getProperty("user.dir")+"/src/main/java/com/yn/code/modelgenerated/")
+                .mapperJavaPath(System.getProperty("user.dir")+"/src/main/java/com/yn/code/modelgenerated/")
+                .mapperXmlPath(System.getProperty("user.dir")+"/src/main/java/com/yn/code/modelgenerated/")
+                .build();
+        new CodeGenerate().generate(configModel);
 
     }
 }

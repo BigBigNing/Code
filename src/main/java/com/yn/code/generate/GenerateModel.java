@@ -1,47 +1,55 @@
 package com.yn.code.generate;
 
-import com.yn.code.config.BaseConfig;
-import com.yn.code.model.ModelGenerateColumnInfo;
-import com.yn.code.model.ModelGenerateInfo;
-import com.yn.code.model.TableColumn;
-import com.yn.code.model.TableInfo;
+import com.yn.code.model.*;
 import com.yn.code.util.CommonUtil;
 import com.yn.code.util.DataTypeEnum;
 import com.yn.code.util.FreeMarkUtil;
-
 import java.text.SimpleDateFormat;
 import java.util.*;
+/**
+ * 这里是类描述
+ *
+ * @author : yangning
+ * @date: 2018-6-11
+ **/
+public class GenerateModel {
+    private ConfigModel configModel;
+    private TableInfo tableInfo;
 
-public class GenerateModel extends BaseConfig {
+    public GenerateModel(ConfigModel configModel,TableInfo tableInfo) {
+        this.configModel = configModel;
+        this.tableInfo = tableInfo;
+    }
 
-    public static void generate(TableInfo tableInfo) {
+    public void generate() {
         ModelGenerateInfo modelGenerateInfo = new ModelGenerateInfo();
-        modelGenerateInfo.setAuthor("yn");
-        modelGenerateInfo.setBasePackage("a");
+        modelGenerateInfo.setAuthor(configModel.getAuthor());
+        modelGenerateInfo.setBasePackage(CommonUtil.getPackageNameByPath(configModel.getModelPath()));
         modelGenerateInfo.setDate(new SimpleDateFormat("yyyy/MM/dd hh:mm:ss").format(new Date()));
         modelGenerateInfo.setModelNameUpperCamel(CommonUtil.getNameUpperCamel(tableInfo.getTableName()));
-        modelGenerateInfo.setSign("a");
         modelGenerateInfo.setTableComment(tableInfo.getTableComment());
         modelGenerateInfo.setTableName(tableInfo.getTableName());
         List<ModelGenerateColumnInfo> modelGenerateColumnInfos = new ArrayList<>();
         List<String> importList = new ArrayList<>();
         for (TableColumn tableColumn : tableInfo.getTableColumns()) {
             ModelGenerateColumnInfo modelGenerateColumnInfo = new ModelGenerateColumnInfo();
+            String javaTypeName = DataTypeEnum.getJavaTypeNameByDataType(tableColumn.getDataType());
             modelGenerateColumnInfo.setColumnComment(tableColumn.getColumnComment());
-            modelGenerateColumnInfo.setColumnJavaTypeName(DataTypeEnum.getJavaTypeNameByDataType(tableColumn.getDataType()));
+            modelGenerateColumnInfo.setColumnJavaTypeName(javaTypeName);
             modelGenerateColumnInfo.setColumnName(CommonUtil.getNameLowerCamel(tableColumn.getColumnName()));
             modelGenerateColumnInfos.add(modelGenerateColumnInfo);
-            if(CommonUtil.isNeedImport(modelGenerateColumnInfo.getColumnJavaTypeName())){
-                importList.add(DataTypeEnum.getJavaTypeByDataType(tableColumn.getDataType()));
+            String columnJavaTypeName = DataTypeEnum.getJavaTypeByDataType(tableColumn.getDataType());
+            if (CommonUtil.isNeedImport(javaTypeName) && !importList.contains(columnJavaTypeName)) {
+                importList.add(columnJavaTypeName);
             }
         }
         modelGenerateInfo.setColumnList(modelGenerateColumnInfos);
         modelGenerateInfo.setImportList(importList);
-        Map<String, Object> root = new HashMap<>();
-        root.put("modelGenerateInfo",modelGenerateInfo);
-        String fileName = CommonUtil.getNameUpperCamel(tableInfo.getTableName()) + ".java";
+        Map<String, Object> root = new HashMap<>(1);
+        root.put("modelGenerateInfo", modelGenerateInfo);
+        String fileName = CommonUtil.getNameUpperCamel(configModel.getTableName()) + ".java";
         try {
-            FreeMarkUtil.generateFile(root,"model.ftl",System.getProperty("user.dir")+"/src/main/java/com/yn/code/modelgenerated/",fileName);
+            FreeMarkUtil.generateFile(root, "model.ftl", configModel.getModelPath(), fileName);
         } catch (Exception e) {
             e.printStackTrace();
         }

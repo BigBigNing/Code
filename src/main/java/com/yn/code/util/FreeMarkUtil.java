@@ -13,6 +13,7 @@ public class FreeMarkUtil {
 
     public static void generateFile(Map<String, Object> root, String templateName, String fileDir, String fileName) throws Exception {
         Configuration conf = new Configuration();
+        conf.setDefaultEncoding("UTF-8");
         conf.setDirectoryForTemplateLoading(new File(TEMPLATE_PATH));
         Template template = conf.getTemplate(templateName);
         File file = new File(fileDir + fileName);

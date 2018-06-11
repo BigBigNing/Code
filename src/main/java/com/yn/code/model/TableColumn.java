@@ -1,5 +1,17 @@
 package com.yn.code.model;
 
+import lombok.*;
+/**
+ * 这里是类描述
+ *
+ * @author : yangning
+ * @date: 2018-6-11
+ **/
+@Setter
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class TableColumn {
     /**
      * 字段名
@@ -21,35 +33,4 @@ public class TableColumn {
      */
     private boolean isPrimaryKey;
 
-    public String getColumnName() {
-        return columnName;
-    }
-
-    public void setColumnName(String columnName) {
-        this.columnName = columnName;
-    }
-
-    public String getColumnComment() {
-        return columnComment;
-    }
-
-    public void setColumnComment(String columnComment) {
-        this.columnComment = columnComment;
-    }
-
-    public String getDataType() {
-        return dataType;
-    }
-
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
-    }
-
-    public boolean isPrimaryKey() {
-        return isPrimaryKey;
-    }
-
-    public void setPrimaryKey(boolean primaryKey) {
-        isPrimaryKey = primaryKey;
-    }
 }

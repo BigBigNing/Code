@@ -1,40 +1,40 @@
-package ${basePackage}.dao.${sign};
+package ${mapperGenerateInfo.basePackage};
 
-import ${basePackage}.model.${sign}.${modelNameUpperCamel};
+import ${mapperGenerateInfo.modelPath}.${mapperGenerateInfo.modelNameUpperCamel};
 
 /**
- * ${tableComment}
- * 表：  ${table}
- * @author  ${author}
- * @date ${date}
+ * ${mapperGenerateInfo.tableComment}
+ * 表：  ${mapperGenerateInfo.tableName}
+ * @author  ${mapperGenerateInfo.author}
+ * @date ${mapperGenerateInfo.date}
  */
-public interface ${modelNameUpperCamel}Mapper {
+public interface ${mapperGenerateInfo.modelNameUpperCamel}Mapper {
     /**
      * 全字段新增
-     * @param ${modelNameLowerCamel}
+     * @param ${mapperGenerateInfo.modelNameLowerCamel}
      * @return 新增条数
      */
-    int insert(${modelNameUpperCamel} ${modelNameLowerCamel});
+    int insert(${mapperGenerateInfo.modelNameUpperCamel} ${mapperGenerateInfo.modelNameLowerCamel});
 
     /**
      * 动态字段新增
-     * @param ${modelNameLowerCamel}
+     * @param ${mapperGenerateInfo.modelNameLowerCamel}
      * @return 新增条数
      */
-    int insertSelective(${modelNameUpperCamel} ${modelNameLowerCamel});
+    int insertSelective(${mapperGenerateInfo.modelNameUpperCamel} ${mapperGenerateInfo.modelNameLowerCamel});
 
     /**
-     * 根据指定主键获取一条数据库记录
+     * 根据主键查询
      * @param id
-     * @return ${modelNameUpperCamel}
+     * @return ${mapperGenerateInfo.modelNameUpperCamel}
      */
-    ${modelNameUpperCamel} selectByPrimaryKey(${primaryKeyType} ${primaryKey});
+    ${mapperGenerateInfo.modelNameUpperCamel} selectByPrimaryKey(${mapperGenerateInfo.primaryKeyJavaTypeName} ${mapperGenerateInfo.primaryKey});
 
     /**
-     * 根据主键动态修改表数据
-     * @param ${modelNameLowerCamel}
+     * 根据主键动态修改
+     * @param ${mapperGenerateInfo.modelNameLowerCamel}
      * @return 修改条数
      */
-    int updateByPrimaryKeySelective(${modelNameUpperCamel} ${modelNameLowerCamel});
+    int updateByPrimaryKeySelective(${mapperGenerateInfo.modelNameUpperCamel} ${mapperGenerateInfo.modelNameLowerCamel});
 
 }

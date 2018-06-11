@@ -7,11 +7,12 @@ public class CommonUtil {
 
     /**
      * 表名转首字母大写驼峰格式
+     *
      * @param tableName
      * @return 转换后的字符串
      */
-    public static String getNameUpperCamel(String tableName){
-        if(isNullOrEmpty(tableName)){
+    public static String getNameUpperCamel(String tableName) {
+        if (isNullOrEmpty(tableName)) {
             return "";
         }
         return toUpperCaseFirstOne(underScoreCaseToCamelCase(tableName));
@@ -19,11 +20,12 @@ public class CommonUtil {
 
     /**
      * 表名转首字母小写驼峰格式
+     *
      * @param tableName
      * @return 转换后的字符串
      */
-    public static String getNameLowerCamel(String tableName){
-        if(isNullOrEmpty(tableName)){
+    public static String getNameLowerCamel(String tableName) {
+        if (isNullOrEmpty(tableName)) {
             return "";
         }
         return toLowerCaseFirstOne(underScoreCaseToCamelCase(tableName));
@@ -31,6 +33,7 @@ public class CommonUtil {
 
     /**
      * 将字符串的第一位转为小写
+     *
      * @param str 需要转换的字符串
      * @return 转换后的字符串
      */
@@ -46,6 +49,7 @@ public class CommonUtil {
 
     /**
      * 将字符串的第一位转为大写
+     *
      * @param str 需要转换的字符串
      * @return 转换后的字符串
      */
@@ -61,6 +65,7 @@ public class CommonUtil {
 
     /**
      * 下划线命名转为驼峰命名
+     *
      * @param str 下划线命名格式
      * @return 驼峰命名格式
      */
@@ -88,7 +93,25 @@ public class CommonUtil {
     }
 
     /**
+     * 根据路径获取包名 默认Java后面跟的是包名
+     * @param path
+     * @return
+     */
+    public static String getPackageNameByPath(String path) {
+        if (path.contains("/java/")) {
+            String[] split = path.split("/java/");
+            String packagePath = split[split.length - 1];
+            if (packagePath.endsWith("/")) {
+                packagePath = packagePath.substring(0, packagePath.length() - 1);
+            }
+            return packagePath.replaceAll("/", ".");
+        }
+        return "Not Found Package! Please add by your self";
+    }
+
+    /**
      * 对象是否为无效值
+     *
      * @param obj 要判断的对象
      * @return 是否为有效值(不为null 和 ""字符串)
      */
@@ -96,8 +119,9 @@ public class CommonUtil {
         return obj == null || "".equals(obj.toString());
     }
 
-    private static final List importList = Arrays.asList("BigDecimal","Date");
-    public static boolean isNeedImport(String type){
+    private static final List importList = Arrays.asList("BigDecimal", "Date");
+
+    public static boolean isNeedImport(String type) {
         return importList.contains(type);
     }
 }

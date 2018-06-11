@@ -1,40 +1,22 @@
 package com.yn.code.model;
 
+import lombok.*;
+/**
+ * 这里是类描述
+ *
+ * @author : yangning
+ * @date: 2018-6-11
+ **/
+
+@Setter
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ModelGenerateColumnInfo {
     private String columnComment;
     private String columnJavaTypeName;
+    private String columnJdbcType;
     private String columnName;
     private String columnCamelName;
-
-    public String getColumnComment() {
-        return columnComment;
-    }
-
-    public void setColumnComment(String columnComment) {
-        this.columnComment = columnComment;
-    }
-
-    public String getColumnJavaTypeName() {
-        return columnJavaTypeName;
-    }
-
-    public void setColumnJavaTypeName(String columnJavaTypeName) {
-        this.columnJavaTypeName = columnJavaTypeName;
-    }
-
-    public String getColumnName() {
-        return columnName;
-    }
-
-    public void setColumnName(String columnName) {
-        this.columnName = columnName;
-    }
-
-    public String getColumnCamelName() {
-        return columnCamelName;
-    }
-
-    public void setColumnCamelName(String columnCamelName) {
-        this.columnCamelName = columnCamelName;
-    }
 }
