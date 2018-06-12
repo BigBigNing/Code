@@ -3,6 +3,8 @@ package com.yn.code.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * 这里是类描述
  *
@@ -25,5 +27,5 @@ public class MapperGenerateInfo {
     private String primaryKeyJdbcType;
     private String primaryKey;
     private String primaryKeyCamel;
-    private ModelGenerateColumnInfo columnList;
+    private List<MapperGenerateColumnInfo> columnList;
 }

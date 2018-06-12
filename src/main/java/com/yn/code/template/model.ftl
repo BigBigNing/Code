@@ -23,7 +23,7 @@ public class ${modelGenerateInfo.modelNameUpperCamel} {
 
     <#list modelGenerateInfo.columnList as column>
     @ApiModelProperty(value = "${column.columnComment}")
-    private ${column.columnJavaTypeName} ${column.columnName};
+    private ${column.columnJavaTypeName} ${column.columnCamelName};
     </#list>
 
     @Override
@@ -33,7 +33,7 @@ public class ${modelGenerateInfo.modelNameUpperCamel} {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         <#list modelGenerateInfo.columnList as column>
-        sb.append(", ${column.columnName}=").append(${column.columnName});
+        sb.append(", ${column.columnCamelName}=").append(${column.columnCamelName});
         </#list>
         sb.append("]");
         return sb.toString();

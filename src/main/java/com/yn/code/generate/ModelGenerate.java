@@ -12,11 +12,11 @@ import java.util.*;
  * @author : yangning
  * @date: 2018-6-11
  **/
-public class GenerateModel {
+public class ModelGenerate {
     private ConfigModel configModel;
     private TableInfo tableInfo;
 
-    public GenerateModel(ConfigModel configModel,TableInfo tableInfo) {
+    public ModelGenerate(ConfigModel configModel, TableInfo tableInfo) {
         this.configModel = configModel;
         this.tableInfo = tableInfo;
     }
@@ -36,7 +36,7 @@ public class GenerateModel {
             String javaTypeName = DataTypeEnum.getJavaTypeNameByDataType(tableColumn.getDataType());
             modelGenerateColumnInfo.setColumnComment(tableColumn.getColumnComment());
             modelGenerateColumnInfo.setColumnJavaTypeName(javaTypeName);
-            modelGenerateColumnInfo.setColumnName(CommonUtil.getNameLowerCamel(tableColumn.getColumnName()));
+            modelGenerateColumnInfo.setColumnCamelName(CommonUtil.getNameLowerCamel(tableColumn.getColumnName()));
             modelGenerateColumnInfos.add(modelGenerateColumnInfo);
             String columnJavaTypeName = DataTypeEnum.getJavaTypeByDataType(tableColumn.getDataType());
             if (CommonUtil.isNeedImport(javaTypeName) && !importList.contains(columnJavaTypeName)) {

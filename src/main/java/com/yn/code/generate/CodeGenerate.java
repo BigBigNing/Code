@@ -16,6 +16,7 @@ public class CodeGenerate {
                 configModel.getJdbcUserName(),
                 configModel.getJdbcPassword());
         TableInfo tableInfo = tableUtil.getTableInfo(configModel.getTableName());
-        new GenerateModel(configModel,tableInfo).generate();
+        new ModelGenerate(configModel,tableInfo).generate();
+        new MapperGenerate(configModel,tableInfo).generate();
     }
 }

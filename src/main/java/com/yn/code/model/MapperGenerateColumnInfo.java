@@ -1,6 +1,7 @@
 package com.yn.code.model;
 
 import lombok.*;
+
 /**
  * 这里是类描述
  *
@@ -13,8 +14,10 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ModelGenerateColumnInfo {
+public class MapperGenerateColumnInfo {
     private String columnComment;
     private String columnJavaTypeName;
+    private String columnJdbcType;
+    private String columnName;
     private String columnCamelName;
 }
